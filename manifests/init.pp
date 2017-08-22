@@ -43,13 +43,13 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class newrelic (
-  $os     = undef,
-  $php    = undef,
-  $java   = undef,
-  $nodejs = undef,
-  $ruby   = undef,
-  $net    = undef,
-  $python = undef,
+  Hash $os     = undef,
+  Hash $php    = undef,
+  Hash $java   = undef,
+  Hash $nodejs = undef,
+  Hash $ruby   = undef,
+  Hash $net    = undef,
+  Hash $python = undef,
 
   $global_key   = undef,
   $repo_install = false,
@@ -71,37 +71,30 @@ class newrelic (
   }
 
   if $os != undef {
-    validate_hash($os)
     create_resources(newrelic::os, $os, $default)
   }
 
   if $php != undef {
-    validate_hash($php)
     create_resources(newrelic::php, $php, $default)
   }
 
   if $java != undef {
-    validate_hash($java)
     create_resources(newrelic::java, $java, $default)
   }
 
   if $nodejs != undef {
-    validate_hash($nodejs)
     create_resources(newrelic::nodejs, $nodejs, $default)
   }
 
   if $ruby != undef {
-    validate_hash($ruby)
     create_resources(newrelic::ruby, $ruby, $default)
   }
 
   if $net != undef {
-    validate_hash($net)
     create_resources(newrelic::net, $net, $default)
   }
 
   if $python != undef {
-    validate_hash($python)
     create_resources(newrelic::python, $python, $default)
   }
 }
