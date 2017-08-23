@@ -25,7 +25,7 @@ class newrelic::php (
   file_line { 'newrelic app_name ${appname}':
     ensure  => present,
     path    => '/etc/php.d/newrelic.ini',
-    line    => 'newrelic.appname = "${appname}"',
+    line    => "newrelic.appname = \"${appname}\"",
     match   => '^newrelic.appname',
     replace => true
   }
