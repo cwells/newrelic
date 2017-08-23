@@ -64,37 +64,37 @@ class newrelic (
   }
 
   if $os {
-    $params = merge($default, $os['os'])
+    $params = merge($default, $os)
     class { 'newrelic::php': * => $params }
   }
 
   if $php {
-    $params = merge($default, $php['php'])
+    $params = merge($default, $php)
     class { 'newrelic::php': * => $params }
   }
 
   if $java {
-    $params = merge($default, $java['java'])
+    $params = merge($default, $java)
     class { 'newrelic::java': * => $params }
   }
 
   if $nodejs {
-    $params = merge($default, $nodejs['nodejs'])
+    $params = merge($default, $nodejs)
     class { 'newrelic::nodejs': * => $params }
   }
 
   if $ruby {
-    $params = merge($default, $ruby['ruby'])
+    $params = merge($default, $ruby)
     class { 'newrelic::ruby': * => $params }
   }
 
   if $net {
-    $params = merge($default, $net['net'])
+    $params = merge($default, $net)
     class { 'newrelic::net': * => $params }
   }
 
   if $python {
-    $params = merge($default, $python['python'])
+    $params = merge($default, $python)
     class { 'newrelic::python': * => $params }
   }
 }
