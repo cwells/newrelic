@@ -95,6 +95,6 @@ class newrelic (
 
   if $python {
     $params = merge($default, $python)
-    class { 'newrelic::python': $params }
+    class { 'newrelic::python': * => $params }
   }
 }
