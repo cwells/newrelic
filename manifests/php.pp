@@ -20,7 +20,8 @@ class newrelic::php (
   }
 
   exec { '/usr/bin/newrelic-install install':
-    creates => '/usr/bin/newrelic-install',
+    # creates => '/usr/bin/newrelic-install',
+    creates => '/etc/newrelic/newrelic.cfg'
     require => Package[$package_name],
   }
 }

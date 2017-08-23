@@ -60,7 +60,7 @@ class newrelic (
 
   $default = $global_key ? {
     undef   => { 'default' => undef },
-    default => { key => $global_key }
+    default => { 'key' => $global_key }
   }
 
   if $os {
