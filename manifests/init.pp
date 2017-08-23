@@ -58,15 +58,9 @@ class newrelic (
     include newrelic::repo
   }
 
-  if $global_key != undef {
-    $default = {
-      key => $global_key,
-    }
-  }
-  else {
-    $default = {
-      'default' => undef,
-    }
+  $default = $global_key ? {
+    undef   => { 'default' => undef },
+    default => { key => $global_key }
   }
 
   if $os {
