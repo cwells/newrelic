@@ -20,13 +20,14 @@ class newrelic::php (
     command     => "/usr/bin/newrelic-install install",
     environment => [ "NR_INSTALL_SILENT=yes", "NR_INSTALL_KEY=${key}" ],
     path        => "/sbin:/bin:/usr/sbin:/usr/bin"
-  } ->
+  }
 
   file_line { 'newrelic app_name ${appname}':
     ensure  => present,
     path    => '/etc/php.d/newrelic.ini',
     line    => "newrelic.appname = \"${appname}\"",
     match   => '^newrelic.appname',
-    replace => true
+    replace => true,
+    require => Package[$package_name]
   }
 }
