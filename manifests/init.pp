@@ -70,8 +70,7 @@ class newrelic (
 
   if $php {
     $params = merge($default, $php['php'])
-    notify { "params == ${params}": }
-    # class { 'newrelic::php': * => $params }
+    class { 'newrelic::php': * => $params }
   }
 
   if $java {
