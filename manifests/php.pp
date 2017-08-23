@@ -11,17 +11,22 @@ class newrelic::php (
     ensure  => $ensure,
   }
 
-  file { '/usr/bin/newrelic-install':
-    ensure  => $ensure,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0755',
-    content => template('newrelic/newrelic-install.erb'),
-  }
+  # file { '/usr/bin/newrelic-install':
+  #   ensure  => $ensure,
+  #   owner   => 'root',
+  #   group   => 'root',
+  #   mode    => '0755',
+  #   content => template('newrelic/newrelic-install.erb'),
+  # }
 
-  exec { '/usr/bin/newrelic-install install':
-    # creates => '/usr/bin/newrelic-install',
-    creates => '/etc/newrelic/newrelic.cfg',
-    require => Package[$package_name]
+  # exec { '/usr/bin/newrelic-install install':
+  #   # creates => '/usr/bin/newrelic-install',
+  #   creates => '/etc/newrelic/newrelic.cfg',
+  #   require => Package[$package_name]
+  # }
+
+  exec { '/usr/bin/newrelic-install':
+    path    => '/usr/sbin:/usr/bin:/sbin:/bin',
+    command => "/usr/bin/newrelic-install purge; NR_INSTALL_SILENT=yes, NR_INSTALL_KEY=${key} /usr/bin/newrelic-install install",
   }
 }
