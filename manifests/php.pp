@@ -28,5 +28,6 @@ class newrelic::php (
   exec { '/usr/bin/newrelic-install':
     path    => '/usr/sbin:/usr/bin:/sbin:/bin',
     command => "/usr/bin/newrelic-install purge; NR_INSTALL_SILENT=yes, NR_INSTALL_KEY=${key} /usr/bin/newrelic-install install",
+    require => Package[$package_name]
   }
 }
