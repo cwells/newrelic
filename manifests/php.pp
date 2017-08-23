@@ -17,8 +17,9 @@ class newrelic::php (
   } ->
 
   exec { '/usr/bin/newrelic-install install':
-    command => "NR_INSTALL_SILENT=yes, NR_INSTALL_KEY=${key} /usr/bin/newrelic-install install",
-    path    => "/sbin:/bin:/usr/sbin:/usr/bin"
+    command     => "/usr/bin/newrelic-install install",
+    environment => [ "NR_INSTALL_SILENT=yes", "NR_INSTALL_KEY=${key}" ],
+    path        => "/sbin:/bin:/usr/sbin:/usr/bin"
   } ->
 
   file_line { 'newrelic app_name ${appname}':
