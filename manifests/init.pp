@@ -96,7 +96,7 @@ class newrelic (
 
   if $net {
     $params = merge($default, $net)
-    class { 'newrelic::net': * => $params)
+    class { 'newrelic::net': * => $params }
   }
 
   if $python {
