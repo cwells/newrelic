@@ -1,13 +1,10 @@
-define newrelic::php (
-  $key,
-
-  $ensure       = present,
-  $default      = undef,
-  $repo_install = $::newrelic::repo_install,
+class newrelic::php (
+  String $key,
+  String $ensure = present,
 ){
   case $::osfamily {
-    'RedHat', 'Debian': { $package_name = 'newrelic-php5'}
-    default: { notify{"os ${::osfamily} not yet supported":}}
+    'RedHat', 'Debian': { $package_name = 'newrelic-php5' }
+    default: { notify{"os ${::osfamily} not yet supported": }}
   }
 
   newrelic::install { $package_name:
@@ -25,6 +22,5 @@ define newrelic::php (
   exec { '/usr/bin/newrelic-install install':
     creates => '/usr/bin/newrelic-install',
     require => Package[$package_name],
-
   }
 }

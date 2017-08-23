@@ -69,31 +69,38 @@ class newrelic (
     }
   }
 
-  if $os != undef {
-    create_resources(newrelic::os, $os, $default)
+  if $os {
+    $params = merge($default, $os)
+    class { 'newrelic::php': * => $params }
   }
 
-  if $php != undef {
-    create_resources(newrelic::php, $php, $default)
+  if $php {
+    $params = merge($default, $php)
+    class { 'newrelic::php': * => $params }
   }
 
-  if $java != undef {
-    create_resources(newrelic::java, $java, $default)
+  if $java {
+    $params = merge($default, $java)
+    class { 'newrelic::java': * => $params }
   }
 
-  if $nodejs != undef {
-    create_resources(newrelic::nodejs, $nodejs, $default)
+  if $nodejs {
+    $params = merge($default, $nodejs)
+    class { 'newrelic::nodejs': * => $params }
   }
 
-  if $ruby != undef {
-    create_resources(newrelic::ruby, $ruby, $default)
+  if $ruby {
+    $params = merge($default, $ruby)
+    class { 'newrelic::ruby': * => $params }
   }
 
-  if $net != undef {
-    create_resources(newrelic::net, $net, $default)
+  if $net {
+    $params = merge($default, $net)
+    class { 'newrelic::net': * => $params)
   }
 
-  if $python != undef {
-    create_resources(newrelic::python, $python, $default)
+  if $python {
+    $params = merge($default, $python)
+    class { 'newrelic::python': $params }
   }
 }

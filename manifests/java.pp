@@ -1,16 +1,14 @@
-define newrelic::java (
-  $version,
-  $app_root,
-  $app_name,
-
-  $ensure        = present,
-  $key           = undef,
-  $source        = 'http://yum.newrelic.com/newrelic/java-agent',
-  $type          = 'agent',
-  $download_name = "${source}/newrelic-${type}/${version}/newrelic-java.zip",
-  $default       = undef,
-  $user          = 'root',
-  $group         = 'root'
+class newrelic::java (
+  String $version,
+  String $app_root,
+  String $app_name,
+  String $ensure        = present,
+  String $key           = undef,
+  String $source        = 'http://yum.newrelic.com/newrelic/java-agent',
+  String $type          = 'agent',
+  String $download_name = "${source}/newrelic-${type}/${version}/newrelic-java.zip",
+  String $user          = 'root',
+  String $group         = 'root'
 ){
 
   download_uncompress { "newrelic_${type}${version}.zip":

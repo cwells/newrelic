@@ -1,10 +1,8 @@
-define newrelic::nodejs (
-  $key,
-  $app_root,
-  $app_name,
-
-  $ensure  = present,
-  $default = undef,
+class newrelic::nodejs (
+  String $key,
+  String $app_root,
+  String $app_name,
+  String $ensure  = present,
 ){
   package { 'newrelic':
     ensure   => $ensure,
