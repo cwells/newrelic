@@ -43,15 +43,16 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class newrelic (
+  String $name,
+  String $global_key     = undef,
+  Boolean $repo_install  = false,
   Optional[Hash] $os     = undef,
   Optional[Hash] $php    = undef,
   Optional[Hash] $java   = undef,
   Optional[Hash] $nodejs = undef,
   Optional[Hash] $ruby   = undef,
   Optional[Hash] $net    = undef,
-  Optional[Hash] $python = undef,
-  String $global_key     = undef,
-  Boolean $repo_install  = false,
+  Optional[Hash] $python = undef
 ){
 
   if $repo_install {
@@ -59,8 +60,8 @@ class newrelic (
   }
 
   $default = $global_key ? {
-    undef   => { 'default' => undef },
-    default => { 'key' => $global_key }
+    undef   => { 'default' => undef, 'name' => $name },
+    default => { 'key' => $global_key, 'name' => $name }
   }
 
   if $os {

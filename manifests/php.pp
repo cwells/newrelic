@@ -1,5 +1,6 @@
 class newrelic::php (
   String $key,
+  String $name,
   String $ensure = present,
 ){
   case $::osfamily {
@@ -11,8 +12,17 @@ class newrelic::php (
     ensure  => $ensure,
   } ->
 
-  exec { '/usr/bin/newrelic-install':
-    path    => '/usr/sbin:/usr/bin:/sbin:/bin',
-    command => "/usr/bin/newrelic-install purge; NR_INSTALL_SILENT=yes, NR_INSTALL_KEY=${key} /usr/bin/newrelic-install install"
+  exec { '/usr/bin/newrelic-install purge':
+  } ->
+
+  exec { '/usr/bin/newrelic-install install':
+    command => "NR_INSTALL_SILENT=yes, NR_INSTALL_KEY=${key} /usr/bin/newrelic-install install"
+  } ->
+
+  file_line { 'newrelic app_name ${name}':
+    ensure => present,
+    path   => '/etc/php.d/newrelic.ini',
+    line   => 'newrelic.app_name = "${name}"',
+    match  => '^newrelic.app_name',
   }
 }
