@@ -43,7 +43,7 @@
 # Copyright 2016 Your name here, unless otherwise noted.
 #
 class newrelic (
-  String $name,
+  String $appname,
   String $global_key     = undef,
   Boolean $repo_install  = false,
   Optional[Hash] $os     = undef,
@@ -60,8 +60,8 @@ class newrelic (
   }
 
   $default = $global_key ? {
-    undef   => { 'default' => undef, 'name' => $name },
-    default => { 'key' => $global_key, 'name' => $name }
+    undef   => { 'default' => undef, 'appname' => $appname },
+    default => { 'key' => $global_key, 'appname' => $appname }
   }
 
   if $os {

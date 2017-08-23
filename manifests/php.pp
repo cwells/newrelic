@@ -1,6 +1,6 @@
 class newrelic::php (
   String $key,
-  String $name,
+  String $appname,
   String $ensure = present,
 ){
   case $::osfamily {
@@ -19,10 +19,10 @@ class newrelic::php (
     command => "NR_INSTALL_SILENT=yes, NR_INSTALL_KEY=${key} /usr/bin/newrelic-install install"
   } ->
 
-  file_line { 'newrelic app_name ${name}':
+  file_line { 'newrelic app_name ${appname}':
     ensure => present,
     path   => '/etc/php.d/newrelic.ini',
-    line   => 'newrelic.app_name = "${name}"',
+    line   => 'newrelic.app_name = "${appname}"',
     match  => '^newrelic.app_name',
   }
 }
